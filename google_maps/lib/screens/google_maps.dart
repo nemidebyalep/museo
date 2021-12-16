@@ -23,14 +23,14 @@ class MapSample extends StatefulWidget {
 class MapSampleState extends State<MapSample> {
   Completer<GoogleMapController> _controller = Completer();
 
-  static final CameraPosition _kGooglePlex = CameraPosition(
-    target: LatLng(-12.136602955899265, -77.02315437400709),
-    zoom: 15,
+  static final CameraPosition _museoinicial = CameraPosition(
+    target: LatLng(-11.939956997547897, -77.06816232671041),
+    zoom: 19,
   );
 
-  static final CameraPosition _kLake = CameraPosition(
+  static final CameraPosition _museofinal = CameraPosition(
       bearing: 192.8334901395799,
-      target: LatLng(-12.136602955899265, -77.02315437400709),
+      target: LatLng(-12.136592466862101, -77.02315437438314),
       tilt: 59,
       zoom: 19);
 
@@ -39,7 +39,7 @@ class MapSampleState extends State<MapSample> {
     Set<Marker> marcadores = new Set<Marker>();
     marcadores.add(new Marker(
       markerId: MarkerId('geo-location'),
-      position: LatLng(-12.136602955899265, -77.02315437400709),
+      position: LatLng(-12.136592466862101, -77.02315437438314),
     )
     );
     return new Scaffold(
@@ -47,7 +47,7 @@ class MapSampleState extends State<MapSample> {
       myLocationButtonEnabled: false,
        mapType: MapType.normal,
      markers: marcadores,
-        initialCameraPosition: _kGooglePlex,
+        initialCameraPosition: _museoinicial,
         onMapCreated: (GoogleMapController controller) {
           _controller.complete(controller);
       },
@@ -63,7 +63,7 @@ class MapSampleState extends State<MapSample> {
 
   Future<void> _goToTheLake() async {
     final GoogleMapController controller = await _controller.future;
-    controller.animateCamera(CameraUpdate.newCameraPosition(_kLake));
+    controller.animateCamera(CameraUpdate.newCameraPosition(_museofinal));
   }
 }
 
